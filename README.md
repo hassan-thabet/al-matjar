@@ -12,4 +12,7 @@ warehouse, or delivery burdens .
 Our goal is to provide job opportunities or an additional source of income for young people in Egypt and Middle East
 The application is being developed using flutter and will work on both systems (Android & iOS)
 
+## Features
+... SO FAR ...
+1 - The application supports both languages , Arabic and English .
 
