@@ -11,6 +11,5 @@ class SplashPageLoaded extends OnBoardingState {}
 
 class OnBoardingSlideChange extends OnBoardingState {
   final int slideIndex;
-
   OnBoardingSlideChange({required this.slideIndex});
 }

@@ -22,7 +22,7 @@ class OnBoardingSlideWidget extends StatelessWidget {
             title,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                fontWeight: FontWeight.w600, fontSize: 30, color: Colors.brown),
+                fontWeight: FontWeight.w600, fontSize: 30, color: Colors.black),
           ),
           const SizedBox(
             height: 20,
@@ -32,7 +32,7 @@ class OnBoardingSlideWidget extends StatelessWidget {
               style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
-                  color: Colors.brown))
+                  color: Colors.black54))
         ],
       ),
     );

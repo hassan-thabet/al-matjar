@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "953359476647",
+    "project_id": "al-matjar-90333",
+    "storage_bucket": "al-matjar-90333.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953359476647:android:d65b351467bc7e20a67882",
+        "android_client_info": {
+          "package_name": "com.solutions_inc.almatjar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953359476647-cgo6dgad0mppvblmdrdiecsr0ocnslj6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solutions_inc.almatjar",
+            "certificate_hash": "2ffcf193174a0b3224f7144b459303c0e36c546e"
+          }
+        },
+        {
+          "client_id": "953359476647-smdcktg7jo7g6qmrmrc3ks2bipj0t2im.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCTvMoroXg2zIdiVytLHTpiIVJ7CTlK7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953359476647-smdcktg7jo7g6qmrmrc3ks2bipj0t2im.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

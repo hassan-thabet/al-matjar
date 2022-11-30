@@ -1,7 +1,7 @@
 import 'package:almatjar/bloc/locale_cubit.dart';
 import 'package:almatjar/bloc/locale_state.dart';
 import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_cubit.dart';
-import 'package:almatjar/features/onboarding/presentation/pages/splash_page.dart';
+import 'package:almatjar/features/onBoarding/presentation/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +57,6 @@ class MyApp extends StatelessWidget {
                   return deviceLocale;
                 },
                 theme: ThemeData(
-                  disabledColor: const Color(0xffFC6B68),
                   fontFamily: state.locale.languageCode == "ar"
                       ? 'Loew Next Arabic'
                       : "Raleway",
