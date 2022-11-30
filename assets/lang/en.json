@@ -1,5 +1,15 @@
 {
-  "hello_world" : "Hello World",
-  "lang" : "english"
-
+  "hello_world": "Hello World",
+  "lang": "english",
+  "next": "next",
+  "skip": "skip",
+  "start": "get started",
+  "on_boarding_title1": "Do you want to increase your income ?",
+  "on_boarding_description1": "al-matjar will helps you to start your e-commerce easily. We will provide all products at a special price that guarantees you greater profit.",
+  "on_boarding_title2": "Warehousing and delivery",
+  "on_boarding_description2": "Without warehousing and capital problems, in addition to a fast delivery service at special prices",
+  "on_boarding_title3": "Collecting and transferring profits",
+  "on_boarding_description3": "After collecting the value of the products from the customer, we will transfer the profits to you without delay and in the appropriate way for you",
+  "on_boarding_title4": "All you have to do is",
+  "on_boarding_description4": "Market your products in the right way for you, whether TikTok, Snapchat, Instagram or Facebook, then receive your profits"
 }

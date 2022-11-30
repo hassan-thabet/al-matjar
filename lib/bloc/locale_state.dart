@@ -9,4 +9,4 @@ class ChangeLocaleState extends LocaleState
   {
     final Locale locale;
     ChangeLocaleState({required this.locale});
-}
+  }
