@@ -5,20 +5,23 @@ class RegisterWithButtonWidget extends StatelessWidget {
   final String buttonTextLabel;
   final Color buttonBackgroundColor;
   final Color labelColor;
+  final VoidCallback onClick;
 
   const RegisterWithButtonWidget(
       {super.key,
       required this.imageAssetPath,
       required this.buttonTextLabel,
       required this.buttonBackgroundColor,
-      required this.labelColor});
+      required this.labelColor,
+      required this.onClick
+      });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: onClick,
         minWidth: double.infinity - 130,
         color: buttonBackgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),

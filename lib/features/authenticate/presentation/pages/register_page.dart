@@ -1,10 +1,16 @@
+import 'dart:math';
+
 import 'package:almatjar/features/authenticate/presentation/widgets/register_with_button_widget.dart';
 import 'package:almatjar/global_app_localizations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+  RegisterPage({Key? key}) : super(key: key);
 
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,24 +52,31 @@ class RegisterPage extends StatelessWidget {
                 buttonTextLabel: 'google'.tr(context),
                 buttonBackgroundColor: Colors.white,
                 labelColor: Colors.black,
+                onClick: () async
+                {
+                  await signInWithGoogle();
+                },
               ),
               RegisterWithButtonWidget(
                 imageAssetPath: 'assets/icons/facebook.png',
                 buttonTextLabel: 'facebook'.tr(context),
                 buttonBackgroundColor: const Color(0xff1577F2),
                 labelColor: Colors.white,
+                onClick: () {  },
               ),
               RegisterWithButtonWidget(
                 imageAssetPath: 'assets/icons/apple.png',
                 buttonTextLabel: 'apple'.tr(context),
                 buttonBackgroundColor: Colors.black,
                 labelColor: Colors.white,
+                onClick: () {  },
               ),
               RegisterWithButtonWidget(
                 imageAssetPath: 'assets/icons/email.png',
                 buttonTextLabel: 'email'.tr(context),
                 buttonBackgroundColor: const Color(0xffFC6B68),
                 labelColor: Colors.white,
+                onClick: () {  },
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
@@ -104,5 +117,19 @@ class RegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> signInWithGoogle()
+  async {
+    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+
+    GoogleSignInAuthentication? googleSignInAuthentication = await googleSignInAccount?.authentication;
+    AuthCredential authCredential = GoogleAuthProvider.credential(idToken: googleSignInAuthentication?.idToken,accessToken: googleSignInAuthentication?.accessToken);
+    UserCredential userCredential = await firebaseAuth.signInWithCredential(authCredential);
+    User? user = userCredential.user;
+    print('Registered successfully');
+    print(user?.displayName);
+    print(user?.email);
+    print(user?.photoURL);
   }
 }
