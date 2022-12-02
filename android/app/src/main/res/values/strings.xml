@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">almatjar</string>
+    <string name="facebook_app_id">5513184092143867</string>
+    <string name="fb_login_protocol_scheme">fb5513184092143867</string>
+    <string name="facebook_client_token">1dd586e3e1b7a44cdabfe72a085764c9</string>
+
+</resources>
+

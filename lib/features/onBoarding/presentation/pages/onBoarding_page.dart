@@ -4,7 +4,7 @@ import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_state.
 import 'package:almatjar/features/onBoarding/presentation/widgets/onBoarding_page_indicator.dart';
 import 'package:almatjar/features/onBoarding/presentation/widgets/onBoarding_slide_widget.dart';
 import 'package:almatjar/global_app_localizations.dart';
-import 'package:almatjar/settings.dart';
+import 'package:almatjar/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,19 +29,19 @@ class OnBoardingPage extends StatelessWidget {
                       BlocProvider.of<OnBoardingCubit>(context).controller,
                   children: <Widget>[
                     OnBoardingSlideWidget(
-                        'imagePath',
+                        'assets/images/increase.png',
                         'on_boarding_title1'.tr(context),
                         'on_boarding_description1'.tr(context)),
                     OnBoardingSlideWidget(
-                        'imagePath',
+                        'assets/images/shipping.png',
                         'on_boarding_title2'.tr(context),
                         'on_boarding_description2'.tr(context)),
                     OnBoardingSlideWidget(
-                        'imagePath',
+                        'assets/images/payment.png',
                         'on_boarding_title3'.tr(context),
                         'on_boarding_description3'.tr(context)),
                     OnBoardingSlideWidget(
-                        'imagePath',
+                        'assets/images/marketing.png',
                         'on_boarding_title4'.tr(context),
                         'on_boarding_description4'.tr(context)),
                   ],
@@ -65,7 +65,7 @@ class OnBoardingPage extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SettingScreen()));
+                                  builder: (context) => const HomePage()));
                         },
                         child: Text(
                           'skip'.tr(context).toUpperCase(),

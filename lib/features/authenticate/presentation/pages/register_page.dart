@@ -1,9 +1,10 @@
-import 'dart:math';
-
+import 'dart:developer';
 import 'package:almatjar/features/authenticate/presentation/widgets/register_with_button_widget.dart';
 import 'package:almatjar/global_app_localizations.dart';
+import 'package:almatjar/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -11,6 +12,7 @@ class RegisterPage extends StatelessWidget {
 
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +64,9 @@ class RegisterPage extends StatelessWidget {
                 buttonTextLabel: 'facebook'.tr(context),
                 buttonBackgroundColor: const Color(0xff1577F2),
                 labelColor: Colors.white,
-                onClick: () {  },
+                onClick: () async {
+                  await signInWithFacebook(context);
+                },
               ),
               RegisterWithButtonWidget(
                 imageAssetPath: 'assets/icons/apple.png',
@@ -119,17 +123,33 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Future<void> signInWithGoogle()
-  async {
+  Future<void> signInWithGoogle() async {
     GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
 
-    GoogleSignInAuthentication? googleSignInAuthentication = await googleSignInAccount?.authentication;
-    AuthCredential authCredential = GoogleAuthProvider.credential(idToken: googleSignInAuthentication?.idToken,accessToken: googleSignInAuthentication?.accessToken);
-    UserCredential userCredential = await firebaseAuth.signInWithCredential(authCredential);
+    GoogleSignInAuthentication? googleSignInAuthentication =
+        await googleSignInAccount?.authentication;
+    AuthCredential authCredential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication?.idToken,
+        accessToken: googleSignInAuthentication?.accessToken);
+    UserCredential userCredential =
+        await firebaseAuth.signInWithCredential(authCredential);
     User? user = userCredential.user;
-    print('Registered successfully');
-    print(user?.displayName);
-    print(user?.email);
-    print(user?.photoURL);
+    log({user?.displayName}.toString());
+  }
+
+  Future<UserCredential> signInWithFacebook(BuildContext context) async {
+    final LoginResult loginResult = await FacebookAuth.instance
+        .login(permissions: ['email', 'public_profile']);
+
+    final OAuthCredential facebookAuthCredential =
+        FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+    final userData = await FacebookAuth.instance.getUserData();
+    print(userData['email']);
+    if (loginResult.status == LoginStatus.success) {
+      Navigator.push(
+          (context), MaterialPageRoute(builder: (context) => const HomePage()));
+    }
+    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
   }
 }

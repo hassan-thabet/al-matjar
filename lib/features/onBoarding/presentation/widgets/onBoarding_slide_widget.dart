@@ -14,7 +14,7 @@ class OnBoardingSlideWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Icon(Icons.add),
+          Image.asset(imagePath),
           const SizedBox(
             height: 40,
           ),
