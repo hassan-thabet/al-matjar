@@ -11,7 +11,6 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   // On App Start
   startSplashPage() async {
     emit(SplashPageLoading());
-
     /// add new f like check connection or download some data from api
     await Future.delayed(const Duration(seconds: 3));
     emit(SplashPageLoaded());

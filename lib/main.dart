@@ -1,5 +1,6 @@
 import 'package:almatjar/bloc/locale_cubit.dart';
 import 'package:almatjar/bloc/locale_state.dart';
+import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
 import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_cubit.dart';
 import 'package:almatjar/features/onBoarding/presentation/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,7 +37,9 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) => LocaleCubit()..getSavedLanguage()),
             BlocProvider(
-                create: (context) => OnBoardingCubit()..startSplashPage())
+                create: (context) => OnBoardingCubit()..startSplashPage()),
+            BlocProvider(
+                create: (context) => AuthenticateCubit())
           ],
           child:
               BlocBuilder<LocaleCubit, LocaleState>(builder: (context, state) {

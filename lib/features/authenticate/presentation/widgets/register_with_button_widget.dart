@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RegisterWithButtonWidget extends StatelessWidget {
-  final String imageAssetPath;
+  final String? imageAssetPath;
   final String buttonTextLabel;
   final Color buttonBackgroundColor;
   final Color labelColor;
@@ -9,11 +9,11 @@ class RegisterWithButtonWidget extends StatelessWidget {
 
   const RegisterWithButtonWidget(
       {super.key,
-      required this.imageAssetPath,
-      required this.buttonTextLabel,
-      required this.buttonBackgroundColor,
-      required this.labelColor,
-      required this.onClick
+        this.imageAssetPath,
+        required this.buttonTextLabel,
+        required this.buttonBackgroundColor,
+        required this.labelColor,
+        required this.onClick
       });
 
   @override
@@ -26,10 +26,13 @@ class RegisterWithButtonWidget extends StatelessWidget {
         color: buttonBackgroundColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
         child: Row(
+
+          mainAxisAlignment: (imageAssetPath == null) ? MainAxisAlignment.center : MainAxisAlignment.start,
+
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-              child: Image.asset(imageAssetPath, height: 28, width: 28),
+              child: (imageAssetPath != null) ? Image.asset(imageAssetPath!, height: 28, width: 28) : const SizedBox(),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),

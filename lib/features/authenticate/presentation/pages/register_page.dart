@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:almatjar/features/authenticate/presentation/pages/signup_page.dart';
 import 'package:almatjar/features/authenticate/presentation/widgets/register_with_button_widget.dart';
 import 'package:almatjar/global_app_localizations.dart';
 import 'package:almatjar/home_page.dart';
@@ -65,7 +66,7 @@ class RegisterPage extends StatelessWidget {
                 buttonBackgroundColor: const Color(0xff1577F2),
                 labelColor: Colors.white,
                 onClick: () async {
-                  await signInWithFacebook(context);
+                   await signInWithFacebook(context);
                 },
               ),
               RegisterWithButtonWidget(
@@ -80,7 +81,9 @@ class RegisterPage extends StatelessWidget {
                 buttonTextLabel: 'email'.tr(context),
                 buttonBackgroundColor: const Color(0xffFC6B68),
                 labelColor: Colors.white,
-                onClick: () {  },
+                onClick: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
+                },
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
