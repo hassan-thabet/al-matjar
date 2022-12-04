@@ -1,18 +1,13 @@
-import 'dart:developer';
+import 'package:almatjar/features/authenticate/presentation/pages/login_page.dart';
 import 'package:almatjar/features/authenticate/presentation/pages/signup_page.dart';
 import 'package:almatjar/features/authenticate/presentation/widgets/register_with_button_widget.dart';
 import 'package:almatjar/global_app_localizations.dart';
-import 'package:almatjar/home_page.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../bloc/authenticate_cubit.dart';
 
 class RegisterPage extends StatelessWidget {
-  RegisterPage({Key? key}) : super(key: key);
-
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final GoogleSignIn googleSignIn = GoogleSignIn();
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +52,8 @@ class RegisterPage extends StatelessWidget {
                 labelColor: Colors.black,
                 onClick: () async
                 {
-                  await signInWithGoogle();
+                  await BlocProvider.of<AuthenticateCubit>(context)
+                      .signInWithGoogle(context);
                 },
               ),
               RegisterWithButtonWidget(
@@ -66,7 +62,8 @@ class RegisterPage extends StatelessWidget {
                 buttonBackgroundColor: const Color(0xff1577F2),
                 labelColor: Colors.white,
                 onClick: () async {
-                   await signInWithFacebook(context);
+                  await BlocProvider.of<AuthenticateCubit>(context)
+                      .signInWithFacebook(context);
                 },
               ),
               RegisterWithButtonWidget(
@@ -108,7 +105,12 @@ class RegisterPage extends StatelessWidget {
                     width: 6,
                   ),
                   InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()));
+                      },
                       child: Text(
                         'login'.tr(context),
                         style: const TextStyle(
@@ -126,33 +128,4 @@ class RegisterPage extends StatelessWidget {
     );
   }
 
-  Future<void> signInWithGoogle() async {
-    GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-
-    GoogleSignInAuthentication? googleSignInAuthentication =
-        await googleSignInAccount?.authentication;
-    AuthCredential authCredential = GoogleAuthProvider.credential(
-        idToken: googleSignInAuthentication?.idToken,
-        accessToken: googleSignInAuthentication?.accessToken);
-    UserCredential userCredential =
-        await firebaseAuth.signInWithCredential(authCredential);
-    User? user = userCredential.user;
-    log({user?.displayName}.toString());
-  }
-
-  Future<UserCredential> signInWithFacebook(BuildContext context) async {
-    final LoginResult loginResult = await FacebookAuth.instance
-        .login(permissions: ['email', 'public_profile']);
-
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
-
-    final userData = await FacebookAuth.instance.getUserData();
-    print(userData['email']);
-    if (loginResult.status == LoginStatus.success) {
-      Navigator.push(
-          (context), MaterialPageRoute(builder: (context) => const HomePage()));
-    }
-    return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  }
 }

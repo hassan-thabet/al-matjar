@@ -1,9 +1,9 @@
-import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_cubit.dart';
-import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_state.dart';
+import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
+import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'onBoarding_page.dart';
+import 'on_boarding_page.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);

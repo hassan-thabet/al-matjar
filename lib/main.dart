@@ -1,8 +1,8 @@
 import 'package:almatjar/bloc/locale_cubit.dart';
 import 'package:almatjar/bloc/locale_state.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
-import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_cubit.dart';
-import 'package:almatjar/features/onBoarding/presentation/pages/splash_page.dart';
+import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
+import 'package:almatjar/features/onboarding/presentation/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -68,10 +68,10 @@ class MyApp extends StatelessWidget {
                   return deviceLocale;
                 },
                 theme: ThemeData(
-                  fontFamily: state.locale.languageCode == "ar"
-                      ? 'Loew Next Arabic'
-                      : "Raleway",
-                ),
+                    fontFamily: state.locale.languageCode == "ar"
+                        ? 'Loew Next Arabic'
+                        : "Raleway",
+                    appBarTheme: const AppBarTheme(centerTitle: true)),
                 home: const SplashPage(),
               );
             }

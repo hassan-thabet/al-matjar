@@ -19,5 +19,11 @@
   "apple": "Continue with apple",
   "email": "Or continue with E-mail",
   "have_account": "Already have an account ? ",
-  "login": "Login"
+  "login": "Login",
+  "signup": "Sign up",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "emailAddress": "E-mail address",
+  "phoneNumber": "Phone number",
+  "password": "Password"
 }

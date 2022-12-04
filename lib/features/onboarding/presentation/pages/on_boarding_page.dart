@@ -1,8 +1,8 @@
 import 'package:almatjar/features/authenticate/presentation/pages/register_page.dart';
-import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_cubit.dart';
-import 'package:almatjar/features/onBoarding/presentation/bloc/onBoarding_state.dart';
-import 'package:almatjar/features/onBoarding/presentation/widgets/onBoarding_page_indicator.dart';
-import 'package:almatjar/features/onBoarding/presentation/widgets/onBoarding_slide_widget.dart';
+import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
+import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_state.dart';
+import 'package:almatjar/features/onboarding/presentation/widgets/on_boarding_page_indicator.dart';
+import 'package:almatjar/features/onboarding/presentation/widgets/on_boarding_slide_widget.dart';
 import 'package:almatjar/global_app_localizations.dart';
 import 'package:almatjar/home_page.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +119,7 @@ class OnBoardingPage extends StatelessWidget {
                             Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => RegisterPage()));
+                                builder: (context) => const RegisterPage()));
                       },
                           color: const Color(0xffFC6B68),
                           elevation: 12,
