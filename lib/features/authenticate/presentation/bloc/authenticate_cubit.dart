@@ -28,7 +28,9 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     UserDataCacheHelper().setUnAuthState();
-    print(FirebaseAuth.instance.currentUser?.email);
+    if (kDebugMode) {
+      print(FirebaseAuth.instance.currentUser?.email);
+    }
   }
 
   //SIGN UP METHOD
