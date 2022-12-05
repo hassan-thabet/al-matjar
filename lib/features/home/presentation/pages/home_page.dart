@@ -2,7 +2,7 @@ import 'package:almatjar/bloc/locale_cubit.dart';
 import 'package:almatjar/bloc/locale_state.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
 import 'package:almatjar/features/authenticate/presentation/pages/register_page.dart';
-import 'package:almatjar/global_app_localizations.dart';
+import 'package:almatjar/features/profile/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

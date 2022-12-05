@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'global_app_localizations.dart';
+import 'features/profile/global_app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

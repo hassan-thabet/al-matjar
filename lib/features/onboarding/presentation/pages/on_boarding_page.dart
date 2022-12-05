@@ -3,8 +3,8 @@ import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit
 import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_state.dart';
 import 'package:almatjar/features/onboarding/presentation/widgets/on_boarding_page_indicator.dart';
 import 'package:almatjar/features/onboarding/presentation/widgets/on_boarding_slide_widget.dart';
-import 'package:almatjar/global_app_localizations.dart';
-import 'package:almatjar/home_page.dart';
+import 'package:almatjar/features/home/presentation/pages/home_page.dart';
+import 'package:almatjar/features/profile/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

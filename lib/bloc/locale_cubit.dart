@@ -2,7 +2,7 @@
 import 'dart:ui';
 
 import 'package:almatjar/bloc/locale_state.dart';
-import 'package:almatjar/language_cache_helper.dart';
+import 'package:almatjar/features/profile/language_cache_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LocaleCubit extends Cubit<LocaleState>{

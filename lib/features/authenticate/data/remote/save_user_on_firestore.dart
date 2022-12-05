@@ -19,6 +19,7 @@ class SaveUserOnFirestore {
       "phone_number": phoneNumber,
       "password": password,
     };
+
     try {
       firebaseFirestore.collection('users').doc(email).set(userData);
     } catch (error) {

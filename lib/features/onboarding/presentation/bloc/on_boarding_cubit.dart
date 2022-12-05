@@ -1,4 +1,5 @@
 
+import 'package:almatjar/features/authenticate/data/local/first_time_cache_helper.dart';
 import 'package:almatjar/features/authenticate/data/local/user_data_cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,13 +12,17 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
 
   // On App Start
   startSplashPage() async {
-    emit(SplashPageLoading());
     await Future.delayed(const Duration(seconds: 2));
     bool auth = await UserDataCacheHelper().getAuthState();
-    if(auth == true){
-      emit(SplashPageLoaded(authState: true));
-    }else{
-      emit(SplashPageLoaded(authState: false));
+    bool firstTime = await FirstTimeCacheHelper().getFirstTimeState();
+    if (auth == true) {
+      emit(SplashPageLoaded(authState: true, firstTimeState: false));
+    } else {
+      if (firstTime == false) {
+        emit(SplashPageLoaded(authState: false, firstTimeState: false));
+      } else {
+        emit(SplashPageLoaded(authState: false, firstTimeState: true));
+      }
     }
 
     emit(OnBoardingSlideChange(slideIndex: 0));
@@ -25,6 +30,7 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
 
   // onBoarding screen
   onSlideChange(int slideIndex) {
+    FirstTimeCacheHelper().setFirstTimeState();
     emit(OnBoardingSlideChange(slideIndex: slideIndex));
   }
 

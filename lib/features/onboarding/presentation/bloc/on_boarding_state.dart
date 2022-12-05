@@ -7,7 +7,9 @@ class SplashPageLoading extends OnBoardingState {}
 
 class SplashPageLoaded extends OnBoardingState {
   final bool authState;
-  SplashPageLoaded({required this.authState});
+  final bool firstTimeState;
+
+  SplashPageLoaded({required this.authState, required this.firstTimeState});
 }
 
 // OnBoarding Page States
