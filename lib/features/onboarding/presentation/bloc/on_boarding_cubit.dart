@@ -1,4 +1,5 @@
 
+import 'package:almatjar/features/authenticate/data/local/user_data_cache_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'on_boarding_state.dart';
@@ -11,9 +12,14 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   // On App Start
   startSplashPage() async {
     emit(SplashPageLoading());
-    /// add new f like check connection or download some data from api
-    await Future.delayed(const Duration(seconds: 3));
-    emit(SplashPageLoaded());
+    await Future.delayed(const Duration(seconds: 2));
+    bool auth = await UserDataCacheHelper().getAuthState();
+    if(auth == true){
+      emit(SplashPageLoaded(authState: true));
+    }else{
+      emit(SplashPageLoaded(authState: false));
+    }
+
     emit(OnBoardingSlideChange(slideIndex: 0));
   }
 
@@ -21,4 +27,6 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   onSlideChange(int slideIndex) {
     emit(OnBoardingSlideChange(slideIndex: slideIndex));
   }
+
+
 }

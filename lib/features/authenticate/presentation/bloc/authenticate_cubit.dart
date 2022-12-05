@@ -1,3 +1,4 @@
+import 'package:almatjar/features/authenticate/data/local/user_data_cache_helper.dart';
 import 'package:almatjar/features/authenticate/data/remote/save_user_on_firestore.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +22,15 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
   String phoneNumber = '';
   String lastName = '';
 
+
+
+  // Logout method
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    UserDataCacheHelper().setUnAuthState();
+    print(FirebaseAuth.instance.currentUser?.email);
+  }
+
   //SIGN UP METHOD
   Future<void> signUpWithEmail(
       {required String email, required String password}) async {
@@ -35,6 +45,7 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
       }
       SaveUserOnFirestore(firstName, lastName, email, phoneNumber, password)
           .save();
+      UserDataCacheHelper().setAuthState();
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.message!);
@@ -52,6 +63,7 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
         email: email,
         password: password,
       );
+      UserDataCacheHelper().setAuthState();
       if (kDebugMode) {
         print('Logged in successfully');
         print(userCredential.user?.email);
@@ -83,12 +95,13 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
       SaveUserOnFirestore(user?.displayName, '', user?.email, user?.phoneNumber,
               'google password')
           .save();
-
+      UserDataCacheHelper().setAuthState();
       Navigator.push(
           (context), MaterialPageRoute(builder: (context) => const HomePage()));
     } catch (error) {
       if (kDebugMode) {
         print(error.toString());
+
       }
     }
   }
@@ -101,8 +114,15 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-    final userData = await FacebookAuth.instance.getUserData();
+    final userData = await FacebookAuth.instance.getUserData(fields: "name,email");
     if (loginResult.status == LoginStatus.success) {
+      SaveUserOnFirestore(userData['name'], '' ,userData['email'], null,
+          'facebook password')
+          .save();
+      UserDataCacheHelper().setAuthState();
+      if (kDebugMode) {
+        print(userData);
+      }
       Navigator.push(
           (context), MaterialPageRoute(builder: (context) => const HomePage()));
     }
