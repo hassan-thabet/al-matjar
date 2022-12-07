@@ -1,5 +1,5 @@
 {
-  "hello_world": "اهلا بالعالم",
+  "app_name": "الـمـتـجـر",
   "lang": "عربي",
   "next": "التالي",
   "skip": "تخطي",
@@ -25,5 +25,6 @@
   "lastName": "الاسم الثاني",
   "emailAddress": "البريد الاليكتروني",
   "phoneNumber": "رقم الهاتف",
-  "password": "كلمة المرور"
+  "password": "كلمة المرور",
+  "verification": "التحقق"
 }

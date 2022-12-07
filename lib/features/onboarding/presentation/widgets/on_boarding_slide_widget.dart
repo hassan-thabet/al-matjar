@@ -21,18 +21,16 @@ class OnBoardingSlideWidget extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-                fontWeight: FontWeight.w600, fontSize: 30, color: Colors.black),
+            style: Theme.of(context).textTheme.headline1,
           ),
           const SizedBox(
             height: 20,
           ),
-          Text(description,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18,
-                  color: Colors.black54))
+          Text(
+            description,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline6,
+          )
         ],
       ),
     );

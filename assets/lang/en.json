@@ -1,5 +1,5 @@
 {
-  "hello_world": "Hello World",
+  "app_name": "Al - matjar",
   "lang": "english",
   "next": "next",
   "skip": "skip",
@@ -25,5 +25,6 @@
   "lastName": "Last Name",
   "emailAddress": "E-mail address",
   "phoneNumber": "Phone number",
-  "password": "Password"
+  "password": "Password",
+  "verification": "Verification"
 }

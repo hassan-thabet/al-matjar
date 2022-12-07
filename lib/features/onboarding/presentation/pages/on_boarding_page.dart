@@ -14,7 +14,6 @@ class OnBoardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffF8F9FA),
         body: SizedBox(
             height: double.infinity - 120,
             width: double.infinity,
@@ -69,9 +68,8 @@ class OnBoardingPage extends StatelessWidget {
                         },
                         child: Text(
                           'skip'.tr(context).toUpperCase(),
-                          style: const TextStyle(
-                              color: Color(0xffBCBDBD),
-                              fontWeight: FontWeight.w600),
+                          style: Theme.of(context).textTheme.button?.copyWith(
+                              color: Theme.of(context).indicatorColor),
                         ),
                       ),
                           Row(
@@ -92,18 +90,15 @@ class OnBoardingPage extends StatelessWidget {
                                   duration: const Duration(milliseconds: 400),
                                   curve: Curves.linear);
                         },
-                            color: const Color(0xffFC6B68),
-                            elevation: 4,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32)),
-                            child: Text(
-                              'next'.tr(context).toUpperCase(),
-                              style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
+                        color: Theme.of(context).primaryColor,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32)),
+                        child: Text(
+                          'next'.tr(context).toUpperCase(),
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                      ),
                         ],
                       ),
                     );
@@ -116,25 +111,22 @@ class OnBoardingPage extends StatelessWidget {
                       children: [
                         MaterialButton(
                           onPressed: () {
-                            Navigator.push(
+                        Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const RegisterPage()));
                       },
-                          color: const Color(0xffFC6B68),
-                          elevation: 12,
-                          minWidth: 200,
-                          height: 44,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(32)),
-                          child: Text(
-                            'start'.tr(context).toUpperCase(),
-                            style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
+                      color: Theme.of(context).primaryColor,
+                      elevation: 12,
+                      minWidth: 200,
+                      height: 44,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32)),
+                      child: Text(
+                        'start'.tr(context).toUpperCase(),
+                        style: Theme.of(context).textTheme.button,
+                      ),
+                    ),
                       ],
                     ),
                   );

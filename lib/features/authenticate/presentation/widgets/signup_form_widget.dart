@@ -34,10 +34,10 @@ class SignupFormWidget extends StatelessWidget {
                         elevation: 4,
                         fillColor: Colors.white,
                         shape: const CircleBorder(),
-                        child: const Icon(
+                        child: Icon(
                           Icons.camera_alt_outlined,
-                          color: Color(0xffFC6B68),
-                          size: 16,
+                          color: Theme.of(context).iconTheme.color,
+                          size: 18,
                         ),
                       ))
                 ],
@@ -79,14 +79,14 @@ class SignupFormWidget extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: CircleAvatar(
                             backgroundColor:
-                                const Color(0xffFC6B68).withAlpha(10),
-                            child: const Icon(
+                                Theme.of(context).primaryColor.withAlpha(10),
+                            child: Icon(
                               Icons.looks_one_outlined,
-                              color: Color(0xffFC6B68),
+                              color: Theme.of(context).iconTheme.color,
                             )),
                       ),
                     ),
-                    style: const TextStyle(color: Colors.black, fontSize: 18),
+                    style: Theme.of(context).textTheme.overline,
                     cursorColor: Colors.black54,
                     cursorWidth: 1,
                   ),
@@ -126,14 +126,14 @@ class SignupFormWidget extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 12),
                         child: CircleAvatar(
                             backgroundColor:
-                                const Color(0xffFC6B68).withAlpha(10),
-                            child: const Icon(
+                                Theme.of(context).primaryColor.withAlpha(10),
+                            child: Icon(
                               Icons.looks_two_outlined,
-                              color: Color(0xffFC6B68),
+                              color: Theme.of(context).iconTheme.color,
                             )),
                       ),
                     ),
-                    style: const TextStyle(color: Colors.black, fontSize: 18),
+                    style: Theme.of(context).textTheme.overline,
                     cursorColor: Colors.black54,
                     cursorWidth: 1,
                   ),
@@ -172,14 +172,15 @@ class SignupFormWidget extends StatelessWidget {
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: CircleAvatar(
-                      backgroundColor: const Color(0xffFC6B68).withAlpha(10),
-                      child: const Icon(
+                      backgroundColor:
+                          Theme.of(context).primaryColor.withAlpha(10),
+                      child: Icon(
                         Icons.email_outlined,
-                        color: Color(0xffFC6B68),
+                        color: Theme.of(context).iconTheme.color,
                       )),
                 ),
               ),
-              style: const TextStyle(color: Colors.black, fontSize: 18),
+              style: Theme.of(context).textTheme.overline,
               cursorColor: Colors.black54,
               cursorWidth: 1,
             ),
@@ -213,14 +214,15 @@ class SignupFormWidget extends StatelessWidget {
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: CircleAvatar(
-                      backgroundColor: const Color(0xffFC6B68).withAlpha(10),
-                      child: const Icon(
+                      backgroundColor:
+                          Theme.of(context).primaryColor.withAlpha(10),
+                      child: Icon(
                         Icons.phone_android_rounded,
-                        color: Color(0xffFC6B68),
+                        color: Theme.of(context).iconTheme.color,
                       )),
                 ),
               ),
-              style: const TextStyle(color: Colors.black, fontSize: 18),
+              style: Theme.of(context).textTheme.overline,
               cursorColor: Colors.black54,
               cursorWidth: 1,
             ),
@@ -253,10 +255,11 @@ class SignupFormWidget extends StatelessWidget {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: CircleAvatar(
-                        backgroundColor: const Color(0xffFC6B68).withAlpha(10),
-                        child: const Icon(
+                        backgroundColor:
+                            Theme.of(context).primaryColor.withAlpha(10),
+                        child: Icon(
                           Icons.lock_outline_rounded,
-                          color: Color(0xffFC6B68),
+                          color: Theme.of(context).iconTheme.color,
                         )),
                   ),
                   suffixIcon: const Padding(
@@ -266,7 +269,7 @@ class SignupFormWidget extends StatelessWidget {
                       color: Colors.black54,
                     ),
                   )),
-              style: const TextStyle(color: Colors.black, fontSize: 18),
+              style: Theme.of(context).textTheme.overline,
               cursorColor: Colors.black54,
               cursorWidth: 1,
               obscureText: true,
@@ -274,7 +277,7 @@ class SignupFormWidget extends StatelessWidget {
           ),
           RegisterWithButtonWidget(
             buttonTextLabel: 'signup'.tr(context),
-            buttonBackgroundColor: const Color(0xffFC6B68),
+            buttonBackgroundColor: Theme.of(context).primaryColor,
             labelColor: Colors.white,
             onClick: () {
               BlocProvider.of<AuthenticateCubit>(context)
@@ -282,6 +285,7 @@ class SignupFormWidget extends StatelessWidget {
                   .currentState
                   ?.save();
               BlocProvider.of<AuthenticateCubit>(context).signUpWithEmail(
+                  context,
                   email: BlocProvider.of<AuthenticateCubit>(context).email,
                   password:
                       BlocProvider.of<AuthenticateCubit>(context).password);

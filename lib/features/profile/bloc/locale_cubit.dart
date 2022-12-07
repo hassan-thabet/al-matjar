@@ -1,17 +1,15 @@
-
 import 'dart:ui';
-
-import 'package:almatjar/bloc/locale_state.dart';
 import 'package:almatjar/features/profile/language_cache_helper.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LocaleCubit extends Cubit<LocaleState>{
-  LocaleCubit() : super (LocaleInitial());
+import 'locale_state.dart';
 
+class LocaleCubit extends Cubit<LocaleState> {
+  LocaleCubit() : super(LocaleInitial());
 
-  Future<void> getSavedLanguage()
-  async {
-    final String cachedLanguageCode = await LanguageCacheHelper().getCachedLanguageCode();
+  Future<void> getSavedLanguage() async {
+    final String cachedLanguageCode =
+        await LanguageCacheHelper().getCachedLanguageCode();
     emit(ChangeLocaleState(locale: Locale(cachedLanguageCode)));
   }
 

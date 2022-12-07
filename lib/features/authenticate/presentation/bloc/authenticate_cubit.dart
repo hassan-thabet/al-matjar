@@ -1,6 +1,7 @@
 import 'package:almatjar/features/authenticate/data/local/user_data_cache_helper.dart';
 import 'package:almatjar/features/authenticate/data/remote/save_user_on_firestore.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_state.dart';
+import 'package:almatjar/features/authenticate/presentation/pages/verification_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
   }
 
   //SIGN UP METHOD
-  Future<void> signUpWithEmail(
+  Future<void> signUpWithEmail(BuildContext context,
       {required String email, required String password}) async {
     try {
       final UserCredential userCredential =
@@ -48,6 +49,8 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
       SaveUserOnFirestore(firstName, lastName, email, phoneNumber, password)
           .save();
       UserDataCacheHelper().setAuthState();
+      Navigator.push((context),
+          MaterialPageRoute(builder: (context) => const VerificationPage()));
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.message!);

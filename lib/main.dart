@@ -1,5 +1,3 @@
-import 'package:almatjar/bloc/locale_cubit.dart';
-import 'package:almatjar/bloc/locale_state.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
 import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
 import 'package:almatjar/features/onboarding/presentation/pages/splash_page.dart';
@@ -8,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'features/profile/bloc/locale_cubit.dart';
+import 'features/profile/bloc/locale_state.dart';
 import 'features/profile/global_app_localizations.dart';
 
 void main() async {
@@ -67,10 +67,42 @@ class MyApp extends StatelessWidget {
                   return deviceLocale;
                 },
                 theme: ThemeData(
-                    fontFamily: state.locale.languageCode == "ar"
-                        ? 'Loew Next Arabic'
-                        : "Raleway",
-                    appBarTheme: const AppBarTheme(centerTitle: true)),
+                  fontFamily: state.locale.languageCode == "ar"
+                      ? 'Loew Next Arabic'
+                      : "Raleway",
+                  appBarTheme: const AppBarTheme(
+                      centerTitle: true,
+                      titleTextStyle: TextStyle(color: Colors.black87),
+                      iconTheme: IconThemeData(color: Colors.black87)),
+                  primaryColor: const Color(0xffFC6B68),
+                  indicatorColor: const Color(0xffAAB7C1),
+                  scaffoldBackgroundColor: const Color(0xffF8F9FA),
+                  textTheme: const TextTheme(
+                      headline1: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 30,
+                          color: Colors.black),
+                      headline2: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 32,
+                          color: Colors.white),
+                      headline6: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          color: Colors.black54),
+                      button: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14,
+                          color: Colors.white),
+                      labelMedium: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black54),
+                      overline: TextStyle(color: Colors.black, fontSize: 18)),
+                  iconTheme: const IconThemeData(
+                    color: Color(0xffFC6B68),
+                  ),
+                ),
                 home: const SplashPage(),
               );
             }

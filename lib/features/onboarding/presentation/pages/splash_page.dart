@@ -2,6 +2,7 @@ import 'package:almatjar/features/authenticate/presentation/pages/register_page.
 import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
 import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_state.dart';
 import 'package:almatjar/features/home/presentation/pages/home_page.dart';
+import 'package:almatjar/features/profile/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,11 +38,11 @@ class SplashPage extends StatelessWidget {
         body: Container(
           height: double.infinity,
           width: double.infinity,
-          color: const Color(0xffFC6B68),
-          child: const Center(
+          color: Theme.of(context).primaryColor,
+          child: Center(
             child: Text(
-              'Al - matjar',
-              style: TextStyle(color: Colors.white, fontSize: 32),
+              'app_name'.tr(context),
+              style: Theme.of(context).textTheme.headline2,
             ),
           ),
         ),

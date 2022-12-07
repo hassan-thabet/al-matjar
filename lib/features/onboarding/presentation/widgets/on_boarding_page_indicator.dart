@@ -12,8 +12,9 @@ class OnBoardingPageIndicator extends StatelessWidget {
       height: isCurrentPage ? 6 : 6,
       width: isCurrentPage ? 20 : 6,
       decoration: BoxDecoration(
-        color:
-            isCurrentPage ? const Color(0xffFC6B68) : const Color(0xffAAB7C1),
+        color: isCurrentPage
+            ? Theme.of(context).primaryColor
+            : Theme.of(context).indicatorColor,
         borderRadius: BorderRadius.circular(12),
       ),
     );

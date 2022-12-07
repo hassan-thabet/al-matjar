@@ -44,14 +44,15 @@ class SignInFormWidget extends StatelessWidget {
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: CircleAvatar(
-                      backgroundColor: const Color(0xffFC6B68).withAlpha(10),
-                      child: const Icon(
+                      backgroundColor:
+                          Theme.of(context).primaryColor.withAlpha(10),
+                      child: Icon(
                         Icons.email_outlined,
-                        color: Color(0xffFC6B68),
+                        color: Theme.of(context).iconTheme.color,
                       )),
                 ),
               ),
-              style: const TextStyle(color: Colors.black, fontSize: 18),
+              style: Theme.of(context).textTheme.overline,
               cursorColor: Colors.black54,
               cursorWidth: 1,
             ),
@@ -84,10 +85,11 @@ class SignInFormWidget extends StatelessWidget {
                   prefixIcon: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: CircleAvatar(
-                        backgroundColor: const Color(0xffFC6B68).withAlpha(10),
-                        child: const Icon(
+                        backgroundColor:
+                            Theme.of(context).primaryColor.withAlpha(10),
+                        child: Icon(
                           Icons.lock_outline_rounded,
-                          color: Color(0xffFC6B68),
+                          color: Theme.of(context).iconTheme.color,
                         )),
                   ),
                   suffixIcon: const Padding(
@@ -97,7 +99,7 @@ class SignInFormWidget extends StatelessWidget {
                       color: Colors.black54,
                     ),
                   )),
-              style: const TextStyle(color: Colors.black, fontSize: 18),
+              style: Theme.of(context).textTheme.overline,
               cursorColor: Colors.black54,
               cursorWidth: 1,
               obscureText: true,
@@ -105,7 +107,7 @@ class SignInFormWidget extends StatelessWidget {
           ),
           RegisterWithButtonWidget(
             buttonTextLabel: 'login'.tr(context),
-            buttonBackgroundColor: const Color(0xffFC6B68),
+            buttonBackgroundColor: Theme.of(context).primaryColor,
             labelColor: Colors.white,
             onClick: () {
               BlocProvider.of<AuthenticateCubit>(context)

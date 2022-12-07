@@ -12,7 +12,6 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffF8F9FA),
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,11 +24,7 @@ class RegisterPage extends StatelessWidget {
               Text(
                 'register_title'.tr(context),
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 30,
-                  color: Colors.black,
-                ),
+                style: Theme.of(context).textTheme.headline1,
               ),
               const SizedBox(
                 height: 20,
@@ -37,10 +32,7 @@ class RegisterPage extends StatelessWidget {
               Text(
                 'register_description'.tr(context),
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black87,
-                ),
+                style: Theme.of(context).textTheme.headline6,
               ),
               const SizedBox(
                 height: 130,
@@ -95,11 +87,7 @@ class RegisterPage extends StatelessWidget {
                   Text(
                     'have_account'.tr(context),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54,
-                    ),
+                    style: Theme.of(context).textTheme.labelMedium,
                   ),
                   const SizedBox(
                     width: 6,
@@ -113,12 +101,11 @@ class RegisterPage extends StatelessWidget {
                       },
                       child: Text(
                         'login'.tr(context),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Color(0xffFC6B68),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).primaryColor))),
                 ],
               ),
             ],

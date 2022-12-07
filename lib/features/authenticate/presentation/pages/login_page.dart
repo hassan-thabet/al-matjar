@@ -10,12 +10,10 @@ class LoginPage extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        backgroundColor: const Color(0xffF8F9FA),
         appBar: AppBar(
-          backgroundColor: const Color(0xffF8F9FA),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
             'login'.tr(context),
-            style: const TextStyle(color: Colors.black87),
           ),
           iconTheme: const IconThemeData(color: Colors.black87),
           elevation: 0,

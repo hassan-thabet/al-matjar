@@ -38,11 +38,10 @@ class RegisterWithButtonWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
               child: Text(
                 buttonTextLabel,
-                style: TextStyle(
-                    color: labelColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold),
-              ),
+                style: Theme.of(context)
+                      .textTheme
+                      .button
+                      ?.copyWith(color: labelColor)),
             ),
           ],
         ),
