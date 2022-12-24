@@ -1,4 +1,5 @@
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
+import 'package:almatjar/features/home/presentation/bloc/home_cubit.dart';
 import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
 import 'package:almatjar/features/onboarding/presentation/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -6,9 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'features/profile/bloc/locale_cubit.dart';
-import 'features/profile/bloc/locale_state.dart';
 import 'features/profile/global_app_localizations.dart';
+import 'features/profile/presentation/bloc/locale_cubit.dart';
+import 'features/profile/presentation/bloc/locale_state.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +38,9 @@ class MyApp extends StatelessWidget {
                 create: (context) => LocaleCubit()..getSavedLanguage()),
             BlocProvider(
                 create: (context) => OnBoardingCubit()..startSplashPage()),
+            BlocProvider(create: (context) => AuthenticateCubit()),
             BlocProvider(
-                create: (context) => AuthenticateCubit())
+                create: (context) => HomeCubit()..changeNavBarIndex(0)),
           ],
           child:
               BlocBuilder<LocaleCubit, LocaleState>(builder: (context, state) {
@@ -75,7 +77,7 @@ class MyApp extends StatelessWidget {
                       titleTextStyle: TextStyle(color: Colors.black87),
                       iconTheme: IconThemeData(color: Colors.black87)),
                   primaryColor: const Color(0xffFC6B68),
-                  indicatorColor: const Color(0xffAAB7C1),
+                  indicatorColor: const Color(0xff8D8E8F),
                   scaffoldBackgroundColor: const Color(0xffF8F9FA),
                   textTheme: const TextTheme(
                       headline1: TextStyle(

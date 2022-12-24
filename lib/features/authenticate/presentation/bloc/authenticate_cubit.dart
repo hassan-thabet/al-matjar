@@ -49,8 +49,8 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
       SaveUserOnFirestore(firstName, lastName, email, phoneNumber, password)
           .save();
       UserDataCacheHelper().setAuthState();
-      Navigator.push((context),
-          MaterialPageRoute(builder: (context) => const VerificationPage()));
+      Navigator.push(
+          (context), MaterialPageRoute(builder: (context) => const HomePage()));
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.message!);

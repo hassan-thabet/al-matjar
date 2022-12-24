@@ -1,66 +1,75 @@
-import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
-import 'package:almatjar/features/authenticate/presentation/pages/register_page.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
-import 'package:flutter/material.dart';
+import 'package:almatjar/features/home/presentation/bloc/home_cubit.dart';
+import 'package:almatjar/features/home/presentation/bloc/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../profile/bloc/locale_cubit.dart';
-import '../../../profile/bloc/locale_state.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(child:
-            BlocBuilder<LocaleCubit, LocaleState>(builder: (context, state) {
-          if (state is ChangeLocaleState) {
-            return Column(
-              children: [
-                const SizedBox(height: 100,),
-                DropdownButton<String>(
-                  value: state.locale.languageCode,
-                  items: ['ar', 'en'].map((String items) {
-                    return DropdownMenuItem<String>(
-                        value: items, child: Text(items));
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    if (newValue != null) {
-                      BlocProvider.of<LocaleCubit>(context)
-                          .changeLanguage(newValue);
-                    }
-                  },
-                ),
-                Text('lang'.tr(context)),
-                const SizedBox(
-                  height: 120,
-                ),
-                SizedBox(
-                  height: 40,
-                  width: 200,
-                  child: MaterialButton(
-                    onPressed: () {
-                      BlocProvider.of<AuthenticateCubit>(context).signOut();
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage()));
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is TabBarChangeState) {
+          return Scaffold(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            body:
+                BlocProvider.of<HomeCubit>(context).pagesList[state.currentTab],
+            bottomNavigationBar: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Container(
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(30))),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: BottomNavigationBar(
+                    backgroundColor: Colors.white,
+                    type: BottomNavigationBarType.fixed,
+                    showSelectedLabels: false,
+                    showUnselectedLabels: false,
+                    elevation: 0,
+                    onTap: (index) {
+                      BlocProvider.of<HomeCubit>(context)
+                          .changeNavBarIndex(index);
                     },
-                    color: Colors.blueAccent,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        Text('Logout User'),
-                        Icon(Icons.logout_rounded),
-                      ],
-                    ),
+                    items: [
+                      BottomNavigationBarItem(
+                          icon: SvgPicture.asset('assets/svg/home.svg',
+                              color: (state.currentTab == 0)
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).indicatorColor),
+                          label: 'explore'),
+                      BottomNavigationBarItem(
+                          icon: SvgPicture.asset('assets/svg/heart.svg',
+                              color: (state.currentTab == 1)
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).indicatorColor),
+                          label: 'favorites'),
+                      BottomNavigationBarItem(
+                          icon: SvgPicture.asset('assets/svg/search.svg',
+                              color: (state.currentTab == 2)
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).indicatorColor),
+                          label: 'search'),
+                      BottomNavigationBarItem(
+                          icon: SvgPicture.asset('assets/svg/user.svg',
+                              color: (state.currentTab == 3)
+                                  ? Theme.of(context).primaryColor
+                                  : Theme.of(context).indicatorColor),
+                          label: 'profile'),
+                    ],
                   ),
-                )
-              ],
-            );
-          }
-          return const SizedBox();
-        })),
-      ),
+                ),
+              ),
+            ),
+          );
+        }
+        return const SizedBox(
+          child: Text('data'),
+        );
+      },
     );
   }
 }
