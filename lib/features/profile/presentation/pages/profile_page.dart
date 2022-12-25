@@ -1,5 +1,8 @@
+import 'package:almatjar/features/profile/global_app_localizations.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../authenticate/presentation/bloc/authenticate_cubit.dart';
+import '../../../authenticate/presentation/pages/register_page.dart';
 import '../widgets/custom_list_tile.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -22,8 +25,8 @@ class ProfilePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const SizedBox(
-                          height: 96,
-                          width: 96,
+                          height: 88,
+                          width: 88,
                           child: CircleAvatar(
                             backgroundImage:
                                 AssetImage('assets/images/hassan.jpg'),
@@ -74,26 +77,48 @@ class ProfilePage extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
-                            CustomListTile(Icons.favorite_border_outlined,
-                                "My favourites", () {}),
                             CustomListTile(
-                                Icons.view_list_sharp, "Orders", () {}),
+                              Icons.person_outline_rounded,
+                              "My Profile".tr(context),
+                              () {},
+                            ),
                             CustomListTile(Icons.shopping_basket_outlined,
-                                "Finished Orders", () {}),
-                            CustomListTile(Icons.favorite_border_outlined,
-                                "My favourites", () {}),
+                                "My Orders".tr(context), () {}),
+                            CustomListTile(Icons.wallet_outlined,
+                                "My Wallet".tr(context), () {}),
                             CustomListTile(
-                                Icons.view_list_sharp, "Orders", () {}),
-                            CustomListTile(Icons.shopping_basket_outlined,
-                                "Finished Orders", () {}),
-                            CustomListTile(Icons.favorite_border_outlined,
-                                "My favourites", () {}),
+                              Icons.offline_bolt_outlined,
+                              "Challenges".tr(context),
+                              () {},
+                            ),
                             CustomListTile(
-                                Icons.view_list_sharp, "Orders", () {}),
-                            CustomListTile(Icons.shopping_basket_outlined,
-                                "Finished Orders", () {})
-
-                            // Divider(),
+                              Icons.error_outline,
+                              "suggestions".tr(context),
+                              () {},
+                            ),
+                            CustomListTile(
+                              Icons.dangerous_outlined,
+                              "terms".tr(context),
+                              () {},
+                            ),
+                            CustomListTile(
+                              Icons.question_answer_outlined,
+                              "connect".tr(context),
+                              () {},
+                            ),
+                            CustomListTile(
+                              Icons.power_settings_new_rounded,
+                              "logout".tr(context),
+                              () {
+                                BlocProvider.of<AuthenticateCubit>(context)
+                                    .signOut();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterPage()));
+                              },
+                            ),
                           ],
                         ),
                       ),

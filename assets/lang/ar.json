@@ -26,5 +26,13 @@
   "emailAddress": "البريد الاليكتروني",
   "phoneNumber": "رقم الهاتف",
   "password": "كلمة المرور",
-  "verification": "التحقق"
+  "verification": "التحقق",
+  "My Profile": "حـسـابـي",
+  "My Orders": "طـلـبـاتـي",
+  "My Wallet": "مـحـفـظـتـي",
+  "Challenges": "تـحـديـات",
+  "suggestions": "الشكاوي و الاقتراحات",
+  "logout": "تسجيل الخروج",
+  "connect": "اتصل بنا",
+  "terms": "الشروط و الاحكام"
 }

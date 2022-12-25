@@ -26,5 +26,13 @@
   "emailAddress": "E-mail address",
   "phoneNumber": "Phone number",
   "password": "Password",
-  "verification": "Verification"
+  "verification": "Verification",
+  "My Profile": "My Profile",
+  "My Orders": "My Orders",
+  "My Wallet": "My Wallet",
+  "Challenges": "Challenges",
+  "suggestions": "Complaints and suggestions",
+  "logout": "Logout",
+  "connect": "Connect with us",
+  "terms": "Terms and Conditions"
 }

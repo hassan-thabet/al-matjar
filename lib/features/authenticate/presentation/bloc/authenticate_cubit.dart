@@ -1,7 +1,6 @@
 import 'package:almatjar/features/authenticate/data/local/user_data_cache_helper.dart';
 import 'package:almatjar/features/authenticate/data/remote/save_user_on_firestore.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_state.dart';
-import 'package:almatjar/features/authenticate/presentation/pages/verification_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
