@@ -1,3 +1,4 @@
+import 'package:almatjar/features/cart/test_page.dart';
 import 'package:almatjar/features/profile/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,22 +35,27 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Hassan Thabet',
-                            style: Theme.of(context).textTheme.headline1,
+                      SizedBox(
+                        width: 200,
+                        child: FittedBox(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Hassan Thabet',
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                'dev.7assan@gmail.com',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                            ],
                           ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            'dev.7assan@gmail.com',
-                            style: Theme.of(context).textTheme.headline6,
-                          ),
-                        ],
-                      )
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -80,7 +86,13 @@ class ProfilePage extends StatelessWidget {
                             CustomListTile(
                               Icons.person_outline_rounded,
                               "My Profile".tr(context),
-                              () {},
+                              () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const TestPage()));
+                              },
                             ),
                             CustomListTile(Icons.shopping_basket_outlined,
                                 "My Orders".tr(context), () {}),
@@ -89,34 +101,34 @@ class ProfilePage extends StatelessWidget {
                             CustomListTile(
                               Icons.offline_bolt_outlined,
                               "Challenges".tr(context),
-                              () {},
+                                  () {},
                             ),
                             CustomListTile(
                               Icons.error_outline,
                               "suggestions".tr(context),
-                              () {},
+                                  () {},
                             ),
                             CustomListTile(
                               Icons.dangerous_outlined,
                               "terms".tr(context),
-                              () {},
+                                  () {},
                             ),
                             CustomListTile(
                               Icons.question_answer_outlined,
                               "connect".tr(context),
-                              () {},
+                                  () {},
                             ),
                             CustomListTile(
                               Icons.power_settings_new_rounded,
                               "logout".tr(context),
-                              () {
+                                  () {
                                 BlocProvider.of<AuthenticateCubit>(context)
                                     .signOut();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const RegisterPage()));
+                                        const RegisterPage()));
                               },
                             ),
                           ],

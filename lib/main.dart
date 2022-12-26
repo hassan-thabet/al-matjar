@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
                       iconTheme: IconThemeData(color: Colors.black87)),
                   primaryColor: const Color(0xffFC6B68),
                   indicatorColor: const Color(0xff8D8E8F),
-                  scaffoldBackgroundColor: const Color(0xffF8F9FA),
+                  scaffoldBackgroundColor: const Color(0xffEFF3F6),
                   textTheme: const TextTheme(
                       headline1: TextStyle(
                           fontWeight: FontWeight.w600,

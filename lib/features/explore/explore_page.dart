@@ -1,4 +1,3 @@
-import 'package:almatjar/features/cart/test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,13 +7,28 @@ class ExplorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        title: const Text('Explore'),
-        leading: Padding(
-          padding: const EdgeInsets.all(5),
-          child: CircleAvatar(
-            radius: 26,
+      body: SafeArea(
+          child: Column(
+        children: const [
+          AppBarCustom(),
+        ],
+      )),
+    );
+  }
+}
+
+class AppBarCustom extends StatelessWidget {
+  const AppBarCustom({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16, left: 16, top: 14, bottom: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CircleAvatar(
+            radius: 22,
             backgroundColor: Colors.white,
             child: SvgPicture.asset(
               'assets/svg/cart.svg',
@@ -23,28 +37,22 @@ class ExplorePage extends StatelessWidget {
               width: 22,
             ),
           ),
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(5),
-            child: CircleAvatar(
-              radius: 26,
-              backgroundColor: Colors.white,
-              child: SvgPicture.asset(
-                'assets/svg/bell.svg',
-                color: Colors.black54,
-                height: 22,
-                width: 22,
-              ),
+          const Text(
+            'Explore',
+            style: TextStyle(fontSize: 18),
+          ),
+          CircleAvatar(
+            radius: 22,
+            backgroundColor: Colors.white,
+            child: SvgPicture.asset(
+              'assets/svg/bell.svg',
+              color: Colors.black54,
+              height: 22,
+              width: 22,
             ),
           ),
         ],
-        elevation: 0,
       ),
-      body: const SafeArea(
-          child: Center(
-        child: Text('explore screen'),
-      )),
     );
   }
 }
