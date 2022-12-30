@@ -115,6 +115,7 @@ class SignInFormWidget extends StatelessWidget {
                   .currentState
                   ?.save();
               BlocProvider.of<AuthenticateCubit>(context).signInWithEmail(
+                  context,
                   email: BlocProvider.of<AuthenticateCubit>(context).email,
                   password:
                       BlocProvider.of<AuthenticateCubit>(context).password);

@@ -59,7 +59,7 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
   }
 
   //SIGN IN METHOD
-  Future<void> signInWithEmail(
+  Future<void> signInWithEmail(BuildContext context,
       {required String email, required String password}) async {
     try {
       final UserCredential userCredential =
@@ -72,6 +72,8 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
         print('Logged in successfully');
         print(userCredential.user?.email);
       }
+      Navigator.push(
+          (context), MaterialPageRoute(builder: (context) => const HomePage()));
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.message!);

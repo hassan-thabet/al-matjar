@@ -1,24 +1,9 @@
+import 'package:almatjar/features/profile/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class ExplorePage extends StatelessWidget {
-  const ExplorePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: const [
-          AppBarCustom(),
-        ],
-      )),
-    );
-  }
-}
-
-class AppBarCustom extends StatelessWidget {
-  const AppBarCustom({Key? key}) : super(key: key);
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +22,9 @@ class AppBarCustom extends StatelessWidget {
               width: 22,
             ),
           ),
-          const Text(
-            'Explore',
-            style: TextStyle(fontSize: 18),
+          Text(
+            'Explore'.tr(context),
+            style: const TextStyle(fontSize: 18),
           ),
           CircleAvatar(
             radius: 22,

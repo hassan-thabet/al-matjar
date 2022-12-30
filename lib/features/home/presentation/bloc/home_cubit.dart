@@ -1,4 +1,4 @@
-import 'package:almatjar/features/explore/explore_page.dart';
+import 'package:almatjar/features/explore/presentation/pages/explore_page.dart';
 import 'package:almatjar/features/home/presentation/bloc/home_state.dart';
 import 'package:almatjar/features/profile/presentation/pages/profile_page.dart';
 import 'package:almatjar/features/search/search_page.dart';
