@@ -13,9 +13,9 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
   // On App Start
   startSplashPage() async {
     await Future.delayed(const Duration(seconds: 2));
-    bool auth = await UserDataCacheHelper().getAuthState();
+    String? auth = await UserDataCacheHelper().getAuthState();
     bool firstTime = await FirstTimeCacheHelper().getFirstTimeState();
-    if (auth == true) {
+    if (auth != null) {
       emit(SplashPageLoaded(authState: true, firstTimeState: false));
     } else {
       if (firstTime == false) {

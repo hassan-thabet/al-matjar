@@ -34,7 +34,8 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
   }
 
   //SIGN UP METHOD
-  Future<void> signUpWithEmail(BuildContext context,
+  Future<void> signUpWithEmail(
+      BuildContext context,
       {required String email, required String password}) async {
     try {
       final UserCredential userCredential =
@@ -42,12 +43,17 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
         email: email,
         password: password,
       );
-      if (kDebugMode) {
-        print(userCredential.user?.email);
-      }
-      SaveUserOnFirestore(firstName, lastName, email, phoneNumber, password)
-          .save();
-      UserDataCacheHelper().setAuthState();
+      final uid = userCredential.user?.uid;
+      SaveUserOnFirestore(
+          uid: uid ,
+          firstName: firstName ,
+          lastName: lastName ,
+          email: email ,
+          password: password ,
+          phoneNumber: phoneNumber
+      ).save();
+
+      UserDataCacheHelper().setAuthState(userUid : uid!);
       Navigator.push(
           (context), MaterialPageRoute(builder: (context) => const HomePage()));
     } on FirebaseAuthException catch (e) {
@@ -67,7 +73,8 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
         email: email,
         password: password,
       );
-      UserDataCacheHelper().setAuthState();
+      final uid = userCredential.user?.uid;
+      UserDataCacheHelper().setAuthState(userUid : uid!);
       if (kDebugMode) {
         print('Logged in successfully');
         print(userCredential.user?.email);
@@ -98,10 +105,17 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
       if (kDebugMode) {
         print(user?.email);
       }
-      SaveUserOnFirestore(user?.displayName, '', user?.email, user?.phoneNumber,
-              'google password')
+      final uid = user?.uid;
+      SaveUserOnFirestore(
+          uid : uid,
+          firstName : user?.displayName,
+          lastName: '',
+          email : user?.email,
+          phoneNumber : user?.phoneNumber,
+          password :'google password',
+      )
           .save();
-      UserDataCacheHelper().setAuthState();
+      UserDataCacheHelper().setAuthState(userUid: uid!);
       Navigator.push(
           (context), MaterialPageRoute(builder: (context) => const HomePage()));
     } catch (error) {
@@ -121,11 +135,19 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
     final userData = await FacebookAuth.instance.getUserData(fields: "name,email");
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+    final uid = userCredential.user!.uid;
     if (loginResult.status == LoginStatus.success) {
-      SaveUserOnFirestore(userData['name'], '' ,userData['email'], null,
-          'facebook password')
+      SaveUserOnFirestore(
+          uid : uid,
+          firstName : userData['name'],
+          lastName : '' ,
+          email : userData['email'],
+          phoneNumber : null,
+          password : 'facebook password'
+      )
           .save();
-      UserDataCacheHelper().setAuthState();
+      UserDataCacheHelper().setAuthState(userUid: uid);
       if (kDebugMode) {
         print(userData);
       }

@@ -1,3 +1,4 @@
+import 'package:almatjar/features/explore/presentation/bloc/explore_cubit.dart';
 import 'package:almatjar/features/home/presentation/bloc/home_cubit.dart';
 import 'package:almatjar/features/home/presentation/bloc/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +34,28 @@ class HomePage extends StatelessWidget {
                     onTap: (index) {
                       BlocProvider.of<HomeCubit>(context)
                           .changeNavBarIndex(index);
+
+                      switch (index) {
+                      // Explore
+                        case 0:
+                          BlocProvider.of<ExploreCubit>(context).getUserName();
+                          break;
+
+                      // Favorites
+                        case 1:
+                          /// BlocProvider.of< ... >(context).load();
+                          break;
+
+                      // Search
+                        case 2:
+                          /// BlocProvider.of< ... >(context).load();
+                          break;
+
+                      // Profile
+                        case 3:
+                          /// BlocProvider.of< ... >(context).load();
+                          break;
+                      }
                     },
                     items: [
                       BottomNavigationBarItem(

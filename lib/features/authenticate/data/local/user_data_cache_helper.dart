@@ -3,30 +3,25 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDataCacheHelper{
 
-  Future<void> setAuthState() async {
+  Future<void> setAuthState({required String userUid}) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool('auth', true);
+    sharedPreferences.setString('uid', userUid);
   }
   Future<void> setUnAuthState() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setBool('auth', false);
+    sharedPreferences.remove('uid');
   }
-  Future<bool> getAuthState() async {
+  Future<String?> getAuthState() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final authState = sharedPreferences.getBool('auth');
-    if(authState != null){
-      return authState;
+    final userUid = sharedPreferences.getString('uid');
+    if(authState == true){
+      return userUid;
     }else{
-      return false;
+      return null;
     }
-  }
-
-  Future<void> googleUserDataCache(String userName) async {
-
-  }
-
-  Future<void> facebookUserDataCache() async {
-
   }
 
 }

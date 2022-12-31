@@ -1,6 +1,7 @@
 import 'package:almatjar/features/explore/presentation/bloc/explore_cubit.dart';
 import 'package:almatjar/features/explore/presentation/bloc/explore_state.dart';
 import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,13 +33,22 @@ class ExplorePage extends StatelessWidget {
                   BlocBuilder<ExploreCubit, ExploreState>(
                     builder: (context, state) {
                       if (state is UserDataLoaded) {
-                        return Text(state.userName,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline6
-                                ?.copyWith(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 22));
+                        return AnimatedTextKit(
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                state.userName,
+                                textStyle:  Theme.of(context)
+                                      .textTheme
+                                      .headline6
+                                      ?.copyWith(
+                                          color: Theme.of(context).primaryColor,
+                                          fontSize: 22),
+                                speed: const Duration(milliseconds: 300),
+                              ),
+                            ],
+                            totalRepeatCount: 1,
+                            pause: const Duration(milliseconds: 150),
+                          );
                       }
                       return const Text('');
                     },
@@ -48,8 +58,8 @@ class ExplorePage extends StatelessWidget {
                   ),
                   Image.asset(
                     'assets/icons/welcome.png',
-                    width: 32,
-                    height: 32,
+                    width: 28,
+                    height: 28,
                   ),
                 ],
               ),
@@ -87,7 +97,28 @@ class ExplorePage extends StatelessWidget {
                 cursorWidth: 1,
               ),
             ),
-          ],
+            BlocBuilder<ExploreCubit , ExploreState>(
+                builder: (context , state) {
+                  return Expanded(
+                    child: GridView.count(
+                        crossAxisCount: 4,
+                        children: List.generate(
+                            BlocProvider.of<ExploreCubit>(context).categoryModel.length,
+                                (index) {
+                                return Center(
+                                    child: Column(
+                                      children: [
+                                        Image.network(BlocProvider.of<ExploreCubit>(context).categoryModel[index].image , width: 40 , height: 40,),
+                                        Text(BlocProvider.of<ExploreCubit>(context).categoryModel[index].name),
+                                      ],
+                                    )
+                                );
+                        }
+                        )
+                    ),
+                  );
+                })
+      ],
         )),
       ),
     );

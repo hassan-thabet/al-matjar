@@ -1,8 +1,8 @@
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_cubit.dart';
 import 'package:almatjar/features/explore/presentation/bloc/explore_cubit.dart';
 import 'package:almatjar/features/home/presentation/bloc/home_cubit.dart';
-import 'package:almatjar/features/onboarding/presentation/bloc/on_boarding_cubit.dart';
-import 'package:almatjar/features/onboarding/presentation/pages/splash_page.dart';
+import 'package:almatjar/features/onBoarding/presentation/bloc/on_boarding_cubit.dart';
+import 'package:almatjar/features/onBoarding/presentation/pages/splash_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => AuthenticateCubit()),
             BlocProvider(
                 create: (context) => HomeCubit()..changeNavBarIndex(0)),
-            BlocProvider(create: (context) => ExploreCubit()..getUserName()),
+            BlocProvider(create: (context) => ExploreCubit()..getUserName()..getCategories()),
           ],
           child:
               BlocBuilder<LocaleCubit, LocaleState>(builder: (context, state) {
