@@ -8,6 +8,7 @@ class SaveUserOnFirestore {
   final String? email;
   final String? phoneNumber;
   final String? password;
+  final String? image;
 
   SaveUserOnFirestore({
       required this.uid,
@@ -15,7 +16,8 @@ class SaveUserOnFirestore {
       required this.lastName,
       required this.email,
       required this.phoneNumber,
-      required this.password
+      required this.password,
+      required this.image,
   });
 
   save() {
@@ -25,6 +27,7 @@ class SaveUserOnFirestore {
       "email": email,
       "phone_number": phoneNumber,
       "password": password,
+      "image": image,
     };
 
     try {

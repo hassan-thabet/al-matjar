@@ -1,5 +1,6 @@
+import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_state.dart';
 import 'package:almatjar/features/authenticate/presentation/widgets/register_with_button_widget.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/authenticate_cubit.dart';
@@ -16,32 +17,52 @@ class SignupFormWidget extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          SizedBox(
-              height: 128,
-              width: 128,
-              child: Stack(
-                clipBehavior: Clip.none,
-                fit: StackFit.expand,
-                children: [
-                  const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/hassan.jpg'),
-                  ),
-                  Positioned(
-                      bottom: -12,
-                      right: -20,
-                      child: RawMaterialButton(
-                        onPressed: () {},
-                        elevation: 4,
-                        fillColor: Colors.white,
-                        shape: const CircleBorder(),
-                        child: Icon(
-                          Icons.camera_alt_outlined,
-                          color: Theme.of(context).iconTheme.color,
-                          size: 18,
-                        ),
-                      ))
-                ],
-              )),
+          InkWell(
+            onTap: (){
+              BlocProvider.of<AuthenticateCubit>(context).pickImageFile();
+            },
+            child: SizedBox(
+                height: 128,
+                width: 128,
+                child: Stack(
+                  clipBehavior: Clip.none,
+                  fit: StackFit.expand,
+                  children: [
+                    BlocBuilder<AuthenticateCubit , AuthenticateState>(
+                        builder: (context , state){
+                          if (state is ImagePickedSuccessfully) {
+                            if(state.imageFile != null){
+                              return CircleAvatar(
+                                backgroundImage: AssetImage(state.imageFile!.path),
+                              );
+                            }else{
+                              return const CircleAvatar(
+                                backgroundImage: AssetImage('assets/images/placeholder.png'),
+                              );
+                            }
+                          }
+                          return const CircleAvatar(
+                            backgroundImage: AssetImage('assets/images/placeholder.png'),
+                          );
+                        }
+                    ),
+                    Positioned(
+                        bottom: -12,
+                        right: -20,
+                        child: RawMaterialButton(
+                          onPressed: () {},
+                          elevation: 4,
+                          fillColor: Colors.white,
+                          shape: const CircleBorder(),
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            color: Theme.of(context).iconTheme.color,
+                            size: 18,
+                          ),
+                        ))
+                  ],
+                )),
+          ),
           const SizedBox(
             height: 30,
           ),

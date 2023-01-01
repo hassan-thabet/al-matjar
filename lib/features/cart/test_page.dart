@@ -1,10 +1,10 @@
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
+import 'package:almatjar/features/settings/presentation/bloc/setting_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../authenticate/presentation/bloc/authenticate_cubit.dart';
 import '../authenticate/presentation/pages/register_page.dart';
-import '../profile/presentation/bloc/locale_cubit.dart';
-import '../profile/presentation/bloc/locale_state.dart';
+import '../settings/presentation/bloc/setting_state.dart';
 
 class TestPage extends StatelessWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class TestPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(child:
-            BlocBuilder<LocaleCubit, LocaleState>(builder: (context, state) {
+            BlocBuilder<SettingCubit, SettingState>(builder: (context, state) {
           if (state is ChangeLocaleState) {
             return Column(
               children: [
@@ -36,7 +36,7 @@ class TestPage extends StatelessWidget {
                   }).toList(),
                   onChanged: (String? newValue) {
                     if (newValue != null) {
-                      BlocProvider.of<LocaleCubit>(context)
+                      BlocProvider.of<SettingCubit>(context)
                           .changeLanguage(newValue);
                     }
                   },

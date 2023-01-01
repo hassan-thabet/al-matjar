@@ -1,27 +1,61 @@
+import 'dart:developer';
+import 'dart:io';
 import 'package:almatjar/features/authenticate/data/local/user_data_cache_helper.dart';
 import 'package:almatjar/features/authenticate/data/remote/save_user_on_firestore.dart';
 import 'package:almatjar/features/authenticate/presentation/bloc/authenticate_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../home/presentation/pages/home_page.dart';
 
 class AuthenticateCubit extends Cubit<AuthenticateState> {
   AuthenticateCubit() : super(AuthenticateInitial());
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  final ImagePicker picker = ImagePicker();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String imagePath = '';
+
   String email = '';
   String password = '';
   String firstName = '';
   String phoneNumber = '';
   String lastName = '';
+  String image = '';
 
+
+  pickImageFile () async {
+    try{
+      final pickImage = await picker.pickImage(source: ImageSource.gallery);
+      imagePath = pickImage!.path;
+      emit(ImagePickedSuccessfully(imageFile: File(pickImage.path)));
+    }catch(error){
+      log(error.toString());
+    }
+  }
+
+  uploadImage(String path) async {
+    try {
+      File file = File(path);
+      final ref = firebaseStorage.ref().child('users/images/${DateTime.now().toString()}');
+      await ref.putFile(file);
+      log('image uploaded successfully ');
+      String url = await ref.getDownloadURL();
+      log(url);
+      image = url;
+    }catch(e)
+    {
+      log(e.toString());
+    }
+  }
 
 
   // Logout method
@@ -38,19 +72,23 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
       BuildContext context,
       {required String email, required String password}) async {
     try {
+
       final UserCredential userCredential =
           await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
       final uid = userCredential.user?.uid;
+      await uploadImage(imagePath);
       SaveUserOnFirestore(
           uid: uid ,
           firstName: firstName ,
           lastName: lastName ,
           email: email ,
           password: password ,
-          phoneNumber: phoneNumber
+          phoneNumber: phoneNumber ,
+          image : image ,
       ).save();
 
       UserDataCacheHelper().setAuthState(userUid : uid!);
@@ -113,6 +151,7 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
           email : user?.email,
           phoneNumber : user?.phoneNumber,
           password :'google password',
+          image: user?.photoURL ,
       )
           .save();
       UserDataCacheHelper().setAuthState(userUid: uid!);
@@ -127,14 +166,14 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
   }
 
   //SIGN IN WITH FACEBOOK METHOD
-  Future<UserCredential> signInWithFacebook(BuildContext context) async {
+  Future<UserCredential> signInWithFacebook(BuildContext context) async  {
     final LoginResult loginResult = await FacebookAuth.instance
         .login(permissions: ['email', 'public_profile']);
 
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
-    final userData = await FacebookAuth.instance.getUserData(fields: "name,email");
+    final userData = await FacebookAuth.instance.getUserData(fields: "name,email,picture.width(200)");
     UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
     final uid = userCredential.user!.uid;
     if (loginResult.status == LoginStatus.success) {
@@ -144,7 +183,8 @@ class AuthenticateCubit extends Cubit<AuthenticateState> {
           lastName : '' ,
           email : userData['email'],
           phoneNumber : null,
-          password : 'facebook password'
+          password : 'facebook password' ,
+          image:  userData["picture"]["data"]["url"],
       )
           .save();
       UserDataCacheHelper().setAuthState(userUid: uid);

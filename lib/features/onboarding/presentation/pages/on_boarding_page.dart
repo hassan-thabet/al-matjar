@@ -4,7 +4,7 @@ import 'package:almatjar/features/onBoarding/presentation/bloc/on_boarding_state
 import 'package:almatjar/features/onBoarding/presentation/widgets/on_boarding_page_indicator.dart';
 import 'package:almatjar/features/onBoarding/presentation/widgets/on_boarding_slide_widget.dart';
 import 'package:almatjar/features/home/presentation/pages/home_page.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,7 +54,7 @@ class OnBoardingPage extends StatelessWidget {
             if (state is OnBoardingSlideChange) {
               if (state.slideIndex != 3) {
                 return Container(
-                  color: Colors.transparent,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   padding: const EdgeInsets.only(bottom: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +104,7 @@ class OnBoardingPage extends StatelessWidget {
                     );
                   }
                   return Container(
-                    color: Colors.transparent,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     padding: const EdgeInsets.only(bottom: 16),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

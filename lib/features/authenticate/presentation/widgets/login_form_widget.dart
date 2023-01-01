@@ -1,5 +1,5 @@
 import 'package:almatjar/features/authenticate/presentation/widgets/register_with_button_widget.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/authenticate_cubit.dart';

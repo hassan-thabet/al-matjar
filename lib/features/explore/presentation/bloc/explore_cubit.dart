@@ -9,6 +9,7 @@ class ExploreCubit extends Cubit<ExploreState> {
   ExploreCubit() : super(ExploreInitial());
 
   List<CategoryModel> categoryModel = [];
+
   Future<void> getUserName() async {
     emit(UserDataLoading());
     await FirebaseFirestore.instance

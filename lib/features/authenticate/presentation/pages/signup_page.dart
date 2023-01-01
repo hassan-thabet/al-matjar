@@ -1,5 +1,5 @@
 import 'package:almatjar/features/authenticate/presentation/widgets/signup_form_widget.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatelessWidget {

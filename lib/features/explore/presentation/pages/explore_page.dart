@@ -1,6 +1,6 @@
 import 'package:almatjar/features/explore/presentation/bloc/explore_cubit.dart';
 import 'package:almatjar/features/explore/presentation/bloc/explore_state.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,21 +34,21 @@ class ExplorePage extends StatelessWidget {
                     builder: (context, state) {
                       if (state is UserDataLoaded) {
                         return AnimatedTextKit(
-                            animatedTexts: [
-                              TypewriterAnimatedText(
-                                state.userName,
-                                textStyle:  Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      ?.copyWith(
-                                          color: Theme.of(context).primaryColor,
-                                          fontSize: 22),
-                                speed: const Duration(milliseconds: 300),
-                              ),
-                            ],
-                            totalRepeatCount: 1,
-                            pause: const Duration(milliseconds: 150),
-                          );
+                          animatedTexts: [
+                            TypewriterAnimatedText(
+                              state.userName,
+                              textStyle: Theme.of(context)
+                                  .textTheme
+                                  .headline6
+                                  ?.copyWith(
+                                      color: Theme.of(context).primaryColor,
+                                      fontSize: 22),
+                              speed: const Duration(milliseconds: 300),
+                            ),
+                          ],
+                          totalRepeatCount: 1,
+                          pause: const Duration(milliseconds: 150),
+                        );
                       }
                       return const Text('');
                     },
@@ -97,28 +97,114 @@ class ExplorePage extends StatelessWidget {
                 cursorWidth: 1,
               ),
             ),
-            BlocBuilder<ExploreCubit , ExploreState>(
-                builder: (context , state) {
-                  return Expanded(
-                    child: GridView.count(
-                        crossAxisCount: 4,
-                        children: List.generate(
-                            BlocProvider.of<ExploreCubit>(context).categoryModel.length,
-                                (index) {
-                                return Center(
-                                    child: Column(
-                                      children: [
-                                        Image.network(BlocProvider.of<ExploreCubit>(context).categoryModel[index].image , width: 40 , height: 40,),
-                                        Text(BlocProvider.of<ExploreCubit>(context).categoryModel[index].name),
-                                      ],
-                                    )
-                                );
-                        }
-                        )
-                    ),
-                  );
-                })
-      ],
+            const SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16 , vertical: 4),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  'categories'.tr(context),
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium,
+                ),
+              ),
+            ),
+            BlocBuilder<ExploreCubit, ExploreState>(builder: (context, state) {
+              return Expanded(
+                flex: 0,
+                child: GridView.count(
+                    physics: const NeverScrollableScrollPhysics() ,
+                    shrinkWrap: true,
+                    crossAxisCount: 4,
+                    children: List.generate(
+                        BlocProvider.of<ExploreCubit>(context)
+                            .categoryModel
+                            .length, (index) {
+                      return Center(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: CircleAvatar(
+                                  radius : 32,
+                                  backgroundColor:
+                                  Theme.of(context).primaryColor.withAlpha(10),
+                                  child: Image.network(
+                                    BlocProvider.of<ExploreCubit>(context)
+                                        .categoryModel[index]
+                                        .image,
+                                    color: Theme.of(context).primaryColor,
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                ),
+                              ),
+                              Text(BlocProvider.of<ExploreCubit>(context)
+                                  .categoryModel[index]
+                                  .name.toUpperCase()),
+                            ],
+                          ));
+                    })
+                ),
+              );
+            }),
+            const SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16 , vertical: 4),
+              child: Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: Text(
+                  'categories'.tr(context),
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium,
+                ),
+              ),
+            ),
+            BlocBuilder<ExploreCubit, ExploreState>(builder: (context, state) {
+              return Expanded(
+                flex: 0,
+                child: GridView.count(
+                    physics: const NeverScrollableScrollPhysics() ,
+                    shrinkWrap: true,
+                    crossAxisCount: 4,
+                    children: List.generate(
+                        BlocProvider.of<ExploreCubit>(context)
+                            .categoryModel
+                            .length, (index) {
+                      return Center(
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: CircleAvatar(
+                                  radius : 32,
+                                  backgroundColor:
+                                  Theme.of(context).primaryColor.withAlpha(10),
+                                  child: Image.network(
+                                    BlocProvider.of<ExploreCubit>(context)
+                                        .categoryModel[index]
+                                        .image,
+                                    color: Theme.of(context).primaryColor,
+                                    width: 40,
+                                    height: 40,
+                                  ),
+                                ),
+                              ),
+                              Text(BlocProvider.of<ExploreCubit>(context)
+                                  .categoryModel[index]
+                                  .name.toUpperCase()),
+                            ],
+                          ));
+                    })
+                ),
+              );
+            }),
+
+          ],
         )),
       ),
     );

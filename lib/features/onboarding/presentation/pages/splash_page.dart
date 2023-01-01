@@ -2,7 +2,7 @@ import 'package:almatjar/features/authenticate/presentation/pages/register_page.
 import 'package:almatjar/features/onBoarding/presentation/bloc/on_boarding_cubit.dart';
 import 'package:almatjar/features/onBoarding/presentation/bloc/on_boarding_state.dart';
 import 'package:almatjar/features/home/presentation/pages/home_page.dart';
-import 'package:almatjar/features/profile/global_app_localizations.dart';
+import 'package:almatjar/features/settings/data/global_app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

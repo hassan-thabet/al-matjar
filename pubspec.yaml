@@ -18,12 +18,14 @@ dependencies:
 
   flutter_bloc: ^8.1.1
   shared_preferences: ^2.0.15
+  image_picker: ^0.8.6
 
   firebase_core: ^2.3.0
   firebase_auth: ^4.1.4
   google_sign_in: ^5.4.2
   flutter_facebook_auth: ^5.0.6
   cloud_firestore: ^4.1.0
+  firebase_storage: ^11.0.10
 
   flutter_svg: ^1.1.6
   animated_text_kit: ^4.2.2

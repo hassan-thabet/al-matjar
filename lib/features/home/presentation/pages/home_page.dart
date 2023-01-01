@@ -1,6 +1,7 @@
 import 'package:almatjar/features/explore/presentation/bloc/explore_cubit.dart';
 import 'package:almatjar/features/home/presentation/bloc/home_cubit.dart';
 import 'package:almatjar/features/home/presentation/bloc/home_state.dart';
+import 'package:almatjar/features/profile/presentation/bloc/profile_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class HomePage extends StatelessWidget {
 
                       // Profile
                         case 3:
-                          /// BlocProvider.of< ... >(context).load();
+                          BlocProvider.of<ProfileCubit>(context).getUserData();
                           break;
                       }
                     },
