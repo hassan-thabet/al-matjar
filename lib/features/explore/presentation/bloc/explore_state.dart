@@ -9,3 +9,9 @@ class UserDataLoaded extends ExploreState {
 
   UserDataLoaded({required this.userName});
 }
+
+class IndicatorIndexChanged extends ExploreState {}
+
+class OfferDataLoading extends ExploreState {}
+
+class OffersDataLoaded extends ExploreState {}
